@@ -1,0 +1,31 @@
+<launch> 
+
+ <arg name="target_frame"               default="/map"/>
+ <arg name="source_frame"               default="/base_footprint"/>  
+ 
+ <node pkg="xbot_cruise" type="amcl_odom.py" name="amcl_odom" respawn="true">
+   <param name="target_frame"           value="$(arg target_frame)" />
+   <param name="source_frame"           value="$(arg source_frame)" />
+ </node>
+   
+ <!--启动导航目标策略-->
+ <!-- node pkg="xbot_cruise" type="cruise_tasks.py" name="cruise_tasks" respawn="true" output= 'screen'/ -->
+ 
+ <!--启动机器人标记-->
+ <node pkg="xbot_cruise" type="robot_uni_marker.py" name="robot_uni_marker" output="screen" respawn="true" >
+  <param name="robot_laber" value="xbot" />
+ </node>
+ 
+
+ <!--障碍物报警机制-->
+ <!--<include file="$(find xbot_cruise)/launch/include/ObstaclesWarning.launch" />-->
+
+ <!--pob out image window-->
+ <!-- node pkg="camera_image" type="camera_image.py" name="camera_image" output="screen"  respawn="true">
+   <param name="ns" value="single_xbot" />
+ </node -->
+ 
+ <!--停止后语音-->
+ <!-- include file="$(find xbot_cruise)/launch/include/warning_speaker.launch" /-->
+</launch >
+

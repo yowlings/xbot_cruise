@@ -1,0 +1,8 @@
+<launch>
+ <arg name='words'              default="请让一下，谢谢" />
+ <include file="$(find xbot_cruise)/launch/include/simple_speaker.launch" />
+ 
+ <node pkg="xbot_cruise" type="node_main.py" name="warning2speaker" output="screen">
+  <param name='words'           value="$(arg words)"  type="str" />
+ </node>
+</launch>

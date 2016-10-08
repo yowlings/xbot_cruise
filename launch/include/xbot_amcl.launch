@@ -1,0 +1,33 @@
+<!--this file is demo for nav with auto obstacle avoidance -->
+
+<launch>
+  <arg name="custom_param_file" default="$(find xbot_cruise)/param/dummy.yaml"/>
+  <param name="use_sim_time" value="false" />
+  
+  <!--map server-->
+  <arg name="map_file" default="$(find xbot_cruise)/map/office_map_manual.yaml"/>
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+  
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!--amcl-->
+  <include file="$(find xbot_cruise)/launch/xml/amcl.launch.xml">
+   <arg name="initial_pose_x"   value="$(arg initial_pose_x)"/>
+   <arg name="initial_pose_y"   value="$(arg initial_pose_y)"/>
+   <arg name="initial_pose_a"   value="$(arg initial_pose_a)"/>
+
+  </include>
+
+  <!--move base-->
+  <include file="$(find xbot_cruise)/launch/xml/move_base.launch.xml">
+   <arg name="custom_param_file"        value="$(arg custom_param_file)"/>
+  </include>
+
+
+  <!-- For fake localization we need a static transform between /odom and /map -->
+  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />
+    
+</launch>
+
