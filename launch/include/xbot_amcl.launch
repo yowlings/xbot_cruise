@@ -5,9 +5,9 @@
   <param name="use_sim_time" value="false" />
   
   <!--map server-->
-  <arg name="map_file" default="$(find xbot_cruise)/map/5-12.yaml"/>
-  <arg name="initial_pose_x" default="0.0"/>
-  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="map_file" default="$(find xbot_cruise)/map/xlab-office.yaml"/>
+  <arg name="initial_pose_x" default="1.41"/>
+  <arg name="initial_pose_y" default="6.7"/>
   <arg name="initial_pose_a" default="0.0"/>
   
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
@@ -25,9 +25,6 @@
    <arg name="custom_param_file"        value="$(arg custom_param_file)"/>
   </include>
 
-
-  <!-- For fake localization we need a static transform between /odom and /map -->
-  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />
     
 </launch>
 

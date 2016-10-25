@@ -13,10 +13,6 @@
 	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">
 	</include>
 
-	<!-- launch ui_marker -->
-	<node pkg="xbot_cruise" type="ui_marker.py" name="ui_marker" output="screen" respawn="true" />
-
-
 	<!-- launch RVIZ -->
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find xbot_cruise)/rviz/xbot.rviz" />
 

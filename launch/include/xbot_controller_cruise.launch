@@ -10,12 +10,17 @@
    
  <!--启动导航目标策略-->
  <!-- node pkg="xbot_cruise" type="cruise_tasks.py" name="cruise_tasks" respawn="true" output= 'screen'/ -->
+
+ <!-- for single task -->
+ <node pkg="xbot_cruise" type="go_tasks.py" name="go_tasks" respawn="true" />
  
- <!--启动机器人标记-->
- <node pkg="xbot_cruise" type="robot_uni_marker.py" name="robot_uni_marker" output="screen" respawn="true" >
-  <param name="robot_laber" value="xbot" />
- </node>
- 
+<!--启动机器人标记-->
+	<node pkg="xbot_cruise" type="robot_uni_marker.py" name="robot_uni_marker" output="screen" respawn="true" >
+	<param name="robot_laber" value="xbot" />
+	</node>
+
+<!-- launch ui_marker -->
+	<node pkg="xbot_cruise" type="ui_marker.py" name="ui_marker" output="screen" respawn="true" />
 
  <!--障碍物报警机制-->
  <!--<include file="$(find xbot_cruise)/launch/include/ObstaclesWarning.launch" />-->
