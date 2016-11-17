@@ -48,7 +48,7 @@ class marker():
  def __init__(self):
   rospy.init_node('robot_uni_marker')
   self.define()
-  rospy.Subscriber("turtlebot_position_in_map", Pose, self.pose_callback)
+  rospy.Subscriber("xbot_position_in_map", Pose, self.pose_callback)
   rospy.spin()
 
 

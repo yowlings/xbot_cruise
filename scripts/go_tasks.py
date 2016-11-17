@@ -97,10 +97,10 @@ class cruise_modle():
   self.marker_point=Marker()
   self.define()
   rospy.Timer(self.period, self.timer)
-  rospy.Subscriber("/rosout",Log, self.Log_callback)
+  
   rospy.Subscriber("/move_base/status", GoalStatusArray, self.status_callback)
   #rospy.Subscriber("odom", Odometry, self.odom_callback)
-  rospy.Subscriber("turtlebot_position_in_map", Pose, self.odom_callback)
+  rospy.Subscriber("xbot_position_in_map", Pose, self.odom_callback)
   rospy.Subscriber("ui_marker", Marker,self.marker_callback)
   rospy.spin()
 

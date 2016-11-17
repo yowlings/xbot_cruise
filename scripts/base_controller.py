@@ -47,7 +47,7 @@ class BaseController:
   self.PlanTopic = rospy.get_param('~PlanTopic')
 
   if not rospy.has_param('~OdomTopic'):
-   rospy.set_param('~OdomTopic','/turtlebot_position_in_map')
+   rospy.set_param('~OdomTopic','/xbot_position_in_map')
   self.OdomTopic = rospy.get_param('~OdomTopic')
 
   if not rospy.has_param('~MotionTopice'):
@@ -89,9 +89,9 @@ class BaseController:
     cmd = self.DiffControl(odom, self.path[self.num].pose) 
    else:
     try:
-     cmd = self.DiffControl(odom, self.path[1].pose) 
-    except:
-     cmd = self.DiffControl(odom, self.path[0].pose) 
+     cmd = self.DiffControl(odom, self.path[-1].pose) 
+    # except:
+    #  cmd = self.DiffControl(odom, self.path[0].pose) 
   self.cmd_vel.publish(cmd)
    
    
@@ -159,7 +159,7 @@ class BaseController:
   (angular_drift, x_drift, y_drift) = self.AngularDrift(goal, odom)
   
   Gorientation = self.GoalOrientation(angular_drift)
-  linear = numpy.sqrt(x_drift**2 + y_drift**2)
+  linear = 0.2 #numpy.sqrt(x_drift**2 + y_drift**2)
 
   GoalAngle = self.GetAngle(Gorientation)
   OdomAngle = self.GetAngle(odom.orientation)

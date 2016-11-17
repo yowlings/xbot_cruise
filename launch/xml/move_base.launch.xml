@@ -42,15 +42,17 @@
 
   
  <!--remap topics-->
-  <remap from="cmd_vel" to="/cmd_vel_mux/input/empty"/>
+  <!-- remap from="cmd_vel" to="/cmd_vel_mux/input/empty"/ -->
+  <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
   <remap from="odom" to="$(arg odom_topic)"/>
   <remap from="scan" to="$(arg laser_topic)"/>
+
  </node>
 
 
   <!--base controller-->
- <arg name="PlanTopic" default='/move_base/NavfnROS/plan' />
- <arg name="OdomTopic" default='/turtlebot_position_in_map' />
+ <!-- arg name="PlanTopic" default='/move_base/NavfnROS/plan' />
+ <arg name="OdomTopic" default='/xbot_position_in_map' />
  <arg name="MotionTopice" default='/cmd_vel_mux/input/navi' />
  
  <arg name="PathBias" default='0.03' />
@@ -70,5 +72,5 @@
   <param name="AngularBias" value="$(arg AngularBias)"/>
   <param name="AngularFree" value="$(arg AngularFree)"/>
   
- </node>
+ </node -->
 </launch>

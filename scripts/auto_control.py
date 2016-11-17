@@ -1,37 +1,37 @@
 #!/usr/bin/env python
 #coding=utf-8
-""" 
+"""
 仿真时候的键盘控制
 
 Copyright (c) 2016 Xu Zhihao (Howe).  All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
 
-This programm is tested on kuboki base turtlebot. 
+This programm is tested on kuboki base turtlebot.
 
 """
 import rospy, sys, termios, tty
-
+import time
 from geometry_msgs.msg import Twist
 
 
 class multi_keybroad_handle():
  def define(self):
   self.pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size = 1)
-  
+
   self.notice = """
    Reading from the keyboard  and Publishing to Twist!
    ---------------------------
    robot Moving around:
-           i     
+           i
       j    k    l
-           ,     
-          
+           ,
+
    i: forward
    ,: backward
    j: left turning
    l: right turning
-   k: stop       
+   k: stop
    """
 
   self.robot_control = {
@@ -40,7 +40,7 @@ class multi_keybroad_handle():
 		'l':(0,0,0,-1),
 		'k':(0,0,0,0),
 		',':(-1,0,0,0),
-		
+
 		'I':(1,0,0,0),
 		'J':(0,1,0,0),
 		'L':(0,-1,0,0),
@@ -57,47 +57,46 @@ class multi_keybroad_handle():
 
  def __init__(self):
   self.define()
+
   self.old_settings = termios.tcgetattr(sys.stdin)
   x = 0
   th = 0
   speed=0.2
 
-  
+
   try:
    print self.notice
    status=0
+   start_time = time.time()
    while not rospy.is_shutdown():
-    self.cmd = Twist()
-    
-    key = self.getKey()
-    
-    if key in self.robot_control.keys():
-     x = self.robot_control[key][0]*speed
-     y = self.robot_control[key][1]*speed
-     z = self.robot_control[key][2]*speed
-     th = self.robot_control[key][3]
-     self.cmd.linear.x = x
-     self.cmd.angular.z = th
-     if not status:
-      print self.notice
-      
-    status = (status + 1) % 10  
-    if (key == '\x03'):
-     break
 
-    self.pub.publish(self.cmd)
-    
-    rospy.sleep(0.3)
-    if self.cmd != Twist():
-     self.cmd = Twist()
-     self.pub.publish(self.cmd)
-    
+    self.cmd = Twist()
+
+    if (time.time()-start_time)<=10:
+      self.cmd.linear.x = 0.3
+      self.cmd.angular.z = 0#.31415926*5
+      self.pub.publish(self.cmd)
+    # elif (time.time()-start_time)<=12:
+    #   self.cmd.linear.x = 0
+    #   self.cmd.angular.z = 0.31415926*5
+    #   self.pub.publish(self.cmd)
+    # elif (time.time()-start_time)<=22:
+    #   self.cmd.linear.x = 0.3
+    #   self.cmd.angular.z = 0
+    #   self.pub.publish(self.cmd)
+    # elif (time.time()-start_time)<=24:
+    #   self.cmd.linear.x = 0
+    #   self.cmd.angular.z = -0.31415926*5
+    #   self.pub.publish(self.cmd)
+
+
+
   except :
    print 'error'
 
   finally:
    self.pub.publish(self.cmd)
-    		
+
 if __name__=='__main__':
  rospy.init_node('fake_keyboard_teleop')
  try:

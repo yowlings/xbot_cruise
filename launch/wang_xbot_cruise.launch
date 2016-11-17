@@ -5,6 +5,9 @@
 	<include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
 	</include>
 
+	<!-- ORB Visual SLAM2  -->
+	<!-- node name = "orbmono" pkg = "ORB_SLAM2" type = "Mono"  args = "$(find ORB_SLAM2)/../../../Vocabulary/ORBvoc.txt $(find ORB_SLAM2)/Asus.yaml"/ -->
+
 	<!-- launch amcl -->
 	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
 	</include>
@@ -13,8 +16,10 @@
 	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">
 	</include>
 
+
 	<!-- launch RVIZ -->
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find xbot_cruise)/rviz/xbot.rviz" />
+
 
 </launch>
 
