@@ -13,11 +13,13 @@ This programm is tested on kuboki base turtlebot.
 import rospy, sys, termios, tty
 import time
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import Odometry
 
 
 class multi_keybroad_handle():
  def define(self):
   self.pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size = 1)
+
 
   self.notice = """
    Reading from the keyboard  and Publishing to Twist!
@@ -47,6 +49,7 @@ class multi_keybroad_handle():
 		'K':(0,0,0,0)
 		}
 
+
  def getKey(self):
 
   tty.setraw(sys.stdin.fileno())
@@ -59,6 +62,7 @@ class multi_keybroad_handle():
   self.define()
 
   self.old_settings = termios.tcgetattr(sys.stdin)
+
   x = 0
   th = 0
   speed=0.2
@@ -73,21 +77,21 @@ class multi_keybroad_handle():
     self.cmd = Twist()
 
     if (time.time()-start_time)<=10:
-      self.cmd.linear.x = 0.3
+      self.cmd.linear.x = -0.2
+      self.cmd.angular.z = 0#.31415926*2.5
+      self.pub.publish(self.cmd)
+    elif (time.time()-start_time)<=20:
+      self.cmd.linear.x = 0.2
       self.cmd.angular.z = 0#.31415926*5
       self.pub.publish(self.cmd)
-    # elif (time.time()-start_time)<=12:
-    #   self.cmd.linear.x = 0
-    #   self.cmd.angular.z = 0.31415926*5
-    #   self.pub.publish(self.cmd)
-    # elif (time.time()-start_time)<=22:
-    #   self.cmd.linear.x = 0.3
-    #   self.cmd.angular.z = 0
-    #   self.pub.publish(self.cmd)
-    # elif (time.time()-start_time)<=24:
-    #   self.cmd.linear.x = 0
-    #   self.cmd.angular.z = -0.31415926*5
-    #   self.pub.publish(self.cmd)
+    elif (time.time()-start_time)<=30:
+      self.cmd.linear.x = -0.2
+      self.cmd.angular.z = 0
+      self.pub.publish(self.cmd)
+    elif (time.time()-start_time)<=40:
+      self.cmd.linear.x = 0.2
+      self.cmd.angular.z = 0#.31415926*5
+      self.pub.publish(self.cmd)
 
 
 
@@ -95,7 +99,11 @@ class multi_keybroad_handle():
    print 'error'
 
   finally:
-   self.pub.publish(self.cmd)
+   self.pub.publishf(self.cmd)
+
+
+
+
 
 if __name__=='__main__':
  rospy.init_node('fake_keyboard_teleop')

@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #coding=utf-8
-""" 
+"""
 this code is used for making one marker in map
 
 Copyright (c) 2015 Xu Zhihao (Howe).  All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
 
-This programm is tested on kuboki base turtlebot. 
+This programm is tested on kuboki base turtlebot.
 
 """
 
@@ -52,26 +52,26 @@ class marker():
   self.marker.points.append(pose.point)
   #print len(self.marker.points)
   self.marker_pub.publish(self.marker)
-  
+
  def timer(self,event):
   if self.clear:
    self.clear=False
    self.define()
-   
+
  def update_odom(self):
   self.marker.points=[]
 
-   
+
  def empty_callback(self,trigger):
   if trigger.data:
    self.clear=True
    rospy.Timer(self.period, self.timer)
   else:
    pass
-   
-   
+
+
  def __init__(self):
-  self.clear=True 
+  self.clear=True
   rospy.init_node('ui_marker')
   rospy.loginfo ('请使用publish point选出想要标记的地方')
   self.define()

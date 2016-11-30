@@ -23,6 +23,6 @@
 
 </launch>
 
-<!-- rosrun xbot_cruise fake_keyboard_control.py (for sim)-->
+
 
 <!-- rosrun xbot_cruise init_pose_handle.py (for real) -->

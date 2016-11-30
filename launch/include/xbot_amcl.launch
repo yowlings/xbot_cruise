@@ -19,7 +19,8 @@
    <arg name="initial_pose_a"   value="$(arg initial_pose_a)"/>
 
   </include>
-
+<!--   <node pkg='own_ros_tools' name='map2odom_tf' type='map2odom_tf.py'/>
+ -->
   <!--move base-->
   <include file="$(find xbot_cruise)/launch/xml/move_base.launch.xml">
    <arg name="custom_param_file"        value="$(arg custom_param_file)"/>
