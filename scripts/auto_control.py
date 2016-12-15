@@ -18,7 +18,7 @@ from nav_msgs.msg import Odometry
 
 class multi_keybroad_handle():
  def define(self):
-  self.pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size = 1)
+  self.pub = rospy.Publisher('/cmd_vel_mux/input/navi', Twist, queue_size = 1)
 
 
   self.notice = """
@@ -66,6 +66,7 @@ class multi_keybroad_handle():
   x = 0
   th = 0
   speed=0.2
+  r=rospy.Rate(5)
 
 
   try:
@@ -74,24 +75,31 @@ class multi_keybroad_handle():
    start_time = time.time()
    while not rospy.is_shutdown():
 
+
     self.cmd = Twist()
 
-    if (time.time()-start_time)<=10:
-      self.cmd.linear.x = -0.2
-      self.cmd.angular.z = 0#.31415926*2.5
+    if (time.time()-start_time)<=3:
+      self.cmd.linear.x = 0.1
+      self.cmd.angular.z = -0.1#.31415926
       self.pub.publish(self.cmd)
-    elif (time.time()-start_time)<=20:
-      self.cmd.linear.x = 0.2
-      self.cmd.angular.z = 0#.31415926*5
-      self.pub.publish(self.cmd)
-    elif (time.time()-start_time)<=30:
-      self.cmd.linear.x = -0.2
-      self.cmd.angular.z = 0
-      self.pub.publish(self.cmd)
-    elif (time.time()-start_time)<=40:
-      self.cmd.linear.x = 0.2
-      self.cmd.angular.z = 0#.31415926*5
-      self.pub.publish(self.cmd)
+      r.sleep()
+
+      # self.cmd.linear.x = 0
+      # self.cmd.angular.z = 0#.31415926*5
+      # self.pub.publish(self.cmd)
+      # r.sleep()
+    # else:
+    #   self.cmd.linear.x = 0
+    #   self.cmd.angular.z = 0#.31415926*5
+    #   self.pub.publish(self.cmd)
+    # elif (time.time()-start_time)<=30:
+    #   self.cmd.linear.x = -0.2
+    #   self.cmd.angular.z = 0
+    #   self.pub.publish(self.cmd)
+    # elif (time.time()-start_time)<=40:
+    #   self.cmd.linear.x = 0.2
+    #   self.cmd.angular.z = 0#.31415926*5
+    #   self.pub.publish(self.cmd)
 
 
 

@@ -2,8 +2,8 @@
 
 <launch>
 	<!-- launch xbot_bringup -->
-	<include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
-	</include>
+	<!-- <include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
+	</include> -->
 
 	<!-- ORB Visual SLAM2  -->
 	<!-- node name = "orbmono" pkg = "ORB_SLAM2" type = "Mono"  args = "$(find ORB_SLAM2)/../../../Vocabulary/ORBvoc.txt $(find ORB_SLAM2)/Asus.yaml"/ -->

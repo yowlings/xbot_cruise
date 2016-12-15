@@ -1,6 +1,6 @@
 <launch>
  <include file="$(find xbot_cruise)/launch/xml/velocity_smoother.launch.xml"/>
- <include file="$(find xbot_cruise)/launch/xml/safety_controller.launch.xml"/>
+ <!-- <include file="$(find xbot_cruise)/launch/xml/safety_controller.launch.xml"/> -->
 
  <arg name="odom_frame_id"   default="odom"/>
  <arg name="base_frame_id"   default="base_footprint"/>
@@ -40,10 +40,11 @@
   <param name="clearing_rotation_allowed" value="$(arg clearing_rotation_allowed)"/>
   <param name="planner_frequency" value="$(arg planner_frequency)"/>
 
-  
+
  <!--remap topics-->
-  <!-- remap from="cmd_vel" to="/cmd_vel_mux/input/empty"/ -->
+  <!-- <remap from="cmd_vel" to="/cmd_vel_mux/input/empty"/> -->
   <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
+
   <remap from="odom" to="$(arg odom_topic)"/>
   <remap from="scan" to="$(arg laser_topic)"/>
 
@@ -51,26 +52,11 @@
 
 
   <!--base controller-->
- <!-- arg name="PlanTopic" default='/move_base/NavfnROS/plan' />
- <arg name="OdomTopic" default='/xbot_position_in_map' />
- <arg name="MotionTopice" default='/cmd_vel_mux/input/navi' />
- 
- <arg name="PathBias" default='0.03' />
- <arg name="MaxLinearSP" default='0.5' />
- <arg name="MaxAngularSP" default='0.4' />
- <arg name="AngularBias" default='0.3' />
- <arg name="AngularFree" default='0.1745' />
- 
- <node pkg="xbot_cruise" type="base_controller.py" respawn="true" name="BaseController_X" output="screen">
-  <param name="PlanTopic" value="$(arg PlanTopic)"/>
-  <param name="OdomTopic" value="$(arg OdomTopic)"/>
-  <param name="MotionTopice" value="$(arg MotionTopice)"/>
-  
-  <param name="PathBias" value="$(arg PathBias)"/>
-  <param name="MaxLinearSP" value="$(arg MaxLinearSP)"/>
-  <param name="MaxAngularSP" value="$(arg MaxAngularSP)"/>
-  <param name="AngularBias" value="$(arg AngularBias)"/>
-  <param name="AngularFree" value="$(arg AngularFree)"/>
-  
- </node -->
+
+
+ <!-- <node pkg="xbot_cruise" type="base_controller.py" respawn="true" name="BaseController_X" output="screen">
+  <remap from="/cmd_vel_mux/input/navi" to="navigation_velocity_smoother/raw_cmd_vel"/>
+  <param name="~OdomTopic"  value="/xbot_position_in_map" />
+  <param name="~PlanTopic"  value="/move_base/DWAPlannerROS/global_plan" />
+ </node> -->
 </launch>

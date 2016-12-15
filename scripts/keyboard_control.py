@@ -18,6 +18,7 @@ from geometry_msgs.msg import Twist
 class multi_keybroad_handle():
  def define(self):
   self.pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size = 1)
+  # self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size = 1)
 
   self.notice = """
    Reading from the keyboard  and Publishing to Twist!
@@ -60,7 +61,7 @@ class multi_keybroad_handle():
   self.old_settings = termios.tcgetattr(sys.stdin)
   x = 0
   th = 0
-  speed=0.2
+  speed=0.1
 
 
   try:
