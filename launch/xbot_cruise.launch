@@ -1,0 +1,23 @@
+<!-- This is a new xbot cruise program modified by Rocwang. -->
+
+<launch>
+	<!-- launch xbot_bringup -->
+	<!-- <include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
+	</include> -->
+
+	<!-- launch amcl -->
+	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
+	</include>
+
+	<node name="xbot_safety_controller" pkg="own_ros_tools" type="xbot_safety_controller.py" />
+
+	<!-- launch robot_controller -->
+	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">
+	</include>
+
+
+</launch>
+
+
+
+<!-- rosrun xbot_cruise init_pose_handle.py (for real) -->

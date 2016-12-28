@@ -1,7 +1,6 @@
 <launch>
- <node pkg='nodelet' type='nodelet' name='xbot_safety_controller' args='load xbot_safety_controller/SafetyControllerNodelet /mobile_base_nodelet_manager'>
+ <node pkg='nodelet' type='nodelet' name='xbot_safety_controller' args='load xbot_safety_controller/SafetyControllerNodelet mobile_base_nodelet_manager'>
   <remap from='xbot_safety_controller/cmd_vel' to='/cmd_vel_mux/input/safety_controller'/>
-  <remap from= 'xbot_safety_controller/echo_data' to = '/sensor/echo_data' />
  </node>
 </launch>
 

@@ -5,12 +5,11 @@
 	<!-- <include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
 	</include> -->
 
-	<!-- ORB Visual SLAM2  -->
-	<!-- node name = "orbmono" pkg = "ORB_SLAM2" type = "Mono"  args = "$(find ORB_SLAM2)/../../../Vocabulary/ORBvoc.txt $(find ORB_SLAM2)/Asus.yaml"/ -->
-
 	<!-- launch amcl -->
 	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
 	</include>
+
+	<node name="xbot_safety_controller" pkg="own_ros_tools" type="xbot_safety_controller.py" />
 
 	<!-- launch robot_controller -->
 	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">

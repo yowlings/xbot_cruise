@@ -1,6 +1,6 @@
 <launch>
  <include file="$(find xbot_cruise)/launch/xml/velocity_smoother.launch.xml"/>
- <!-- <include file="$(find xbot_cruise)/launch/xml/safety_controller.launch.xml"/> -->
+<!--  <include file="$(find xbot_cruise)/launch/xml/safety_controller.launch.xml"/> -->
 
  <arg name="odom_frame_id"   default="odom"/>
  <arg name="base_frame_id"   default="base_footprint"/>

@@ -61,7 +61,7 @@ class multi_keybroad_handle():
   self.old_settings = termios.tcgetattr(sys.stdin)
   x = 0
   th = 0
-  speed=0.1
+  speed=0.3
 
 
   try:
