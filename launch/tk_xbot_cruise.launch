@@ -2,8 +2,8 @@
 
 <launch>
 	<!-- launch xbot_bringup -->
-	<!-- <include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
-	</include> -->
+	<include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
+	</include>
 
 	<!-- launch amcl -->
 	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
