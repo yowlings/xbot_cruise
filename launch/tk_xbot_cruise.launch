@@ -9,7 +9,7 @@
 	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
 	</include>
 
-	<node name="xbot_safety_controller" pkg="own_ros_tools" type="xbot_safety_controller.py" />
+	<node name="xbot_safety_controller" pkg="xbot_cruise" type="xbot_safety_controller.py" />
 
 	<!-- launch robot_controller -->
 	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">
