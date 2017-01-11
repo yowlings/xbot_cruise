@@ -23,7 +23,7 @@ class xbot_safety_controller():
 
   def echo_dataCB(self,echo_data):
     # print echo_data.center_near
-    if (echo_data.left_near | echo_data.center_near | echo_data.right_near):
+    if ehco_data.danger:
       cmd = Twist()
       cmd.linear.x = 0
       cmd.angular.z = 0

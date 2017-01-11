@@ -7,16 +7,15 @@
 	</include> -->
 
 	<!-- launch amcl -->
-	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
+	<include file="$(find machine)/launch/Xbot_amcl.launch">
 	</include>
 
 
-	<!-- <include file="$(find rplidar_ros)/launch/hectormapping.launch"></include> -->
+	<!-- xbot safety controller -->
+	<node name="xbot_safety_controller" pkg="xbot_cruise" type="xbot_safety_controller.py" />
 
-	<node name="xbot_safety_controller" pkg="own_ros_tools" type="xbot_safety_controller.py" />
-
-	<!-- launch robot_controller -->
-	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">
+	<!-- launch robot_controller, including get xbot position in map, get goal, show goal, and show xbot label -->
+	<include file="$(find machine)/launch/robot_controller_single.launch">
 	</include>
 
 
