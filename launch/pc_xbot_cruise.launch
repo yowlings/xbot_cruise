@@ -3,19 +3,20 @@
 <launch>
 
 	<!-- launch xbot_bringup -->
-	<!-- <include file="$(find xbot_bringup)/launch/xbot_minimal.launch">
+	<!-- <include file="$(find xbot_bringup)/launch/xbot_asus.launch">
 	</include> -->
 
-	<!-- launch amcl -->
-	<include file="$(find machine)/launch/Xbot_amcl.launch">
-	</include>
 
+	<!-- launch amcl -->
+	<include file="$(find xbot_cruise)/launch/xbot_amcl.launch">
+	</include>
 
 	<!-- xbot safety controller -->
 	<node name="xbot_safety_controller" pkg="xbot_cruise" type="xbot_safety_controller.py" />
 
+
 	<!-- launch robot_controller, including get xbot position in map, get goal, show goal, and show xbot label -->
-	<include file="$(find machine)/launch/robot_controller_single.launch">
+	<include file="$(find xbot_cruise)/launch/include/xbot_controller_cruise.launch">
 	</include>
 
 

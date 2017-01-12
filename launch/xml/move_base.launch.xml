@@ -43,20 +43,11 @@
 
  <!--remap topics-->
   <!-- <remap from="cmd_vel" to="/cmd_vel_mux/input/empty"/> -->
-  <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
+  <remap from="cmd_vel" to="/navigation_velocity_smoother/raw_cmd_vel"/>
 
   <remap from="odom" to="$(arg odom_topic)"/>
   <remap from="scan" to="$(arg laser_topic)"/>
 
  </node>
 
-
-  <!--base controller-->
-
-
- <!-- <node pkg="xbot_cruise" type="base_controller.py" respawn="true" name="BaseController_X" output="screen">
-  <remap from="/cmd_vel_mux/input/navi" to="navigation_velocity_smoother/raw_cmd_vel"/>
-  <param name="~OdomTopic"  value="/xbot_position_in_map" />
-  <param name="~PlanTopic"  value="/move_base/DWAPlannerROS/global_plan" />
- </node> -->
 </launch>

@@ -5,7 +5,7 @@
   <param name="use_sim_time" value="false" />
 
   <!--map server-->
-  <arg name="map_file" default="$(find xbot_cruise)/map/xlab-office.yaml"/>
+  <arg name="map_file" default="$(find xbot_cruise)/map/502.yaml"/>
   <arg name="initial_pose_x" default="1.32349405393"/>
   <arg name="initial_pose_y" default="6.9282661443"/>
   <arg name="initial_pose_a" default="-1.1489145095412117"/>
@@ -19,9 +19,7 @@
    <arg name="initial_pose_a"   value="$(arg initial_pose_a)"/>
 
   </include>
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 100" /> -->
-<!--   <node pkg='own_ros_tools' name='map2odom_tf' type='map2odom_tf.py'/>
- -->
+
   <!--move base-->
   <include file="$(find xbot_cruise)/launch/xml/move_base.launch.xml">
    <arg name="custom_param_file"        value="$(arg custom_param_file)"/>

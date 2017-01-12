@@ -2,7 +2,7 @@
 
 <launch>
 	<!-- launch xbot_bringup -->
-	<include file="$(find xbot_bringup)/launch/xbot_rplidar.launch">
+	<include file="$(find xbot_bringup)/launch/xbot_asus.launch">
 	</include>
 
 	<!-- launch amcl -->

@@ -14,7 +14,7 @@ class xbot_safety_controller():
   """docstring for xbot_safety_controller"""
   def __init__(self):
     rospy.init_node('xbot_safety_controller')
-    self.move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
+    # self.move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     self.pub = rospy.Publisher('/cmd_vel_mux/input/safety_controller', Twist, queue_size = 1)
     rospy.Subscriber("/sensor/echo_data", DockInfraRed, self.echo_dataCB)
     rospy.spin()
@@ -28,7 +28,7 @@ class xbot_safety_controller():
       cmd.linear.x = 0
       cmd.angular.z = 0
       self.pub.publish(cmd)
-      self.move_base.cancel_goal()
+      # self.move_base.cancel_goal()
 
 
 
