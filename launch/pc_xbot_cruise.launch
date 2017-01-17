@@ -8,7 +8,7 @@
 
 
 	<!-- launch amcl -->
-	<include file="$(find xbot_cruise)/launch/xbot_amcl.launch">
+	<include file="$(find xbot_cruise)/launch/include/xbot_amcl.launch">
 	</include>
 
 	<!-- xbot safety controller -->
