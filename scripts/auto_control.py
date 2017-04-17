@@ -79,8 +79,8 @@ class multi_keybroad_handle():
     self.cmd = Twist()
 
     if (time.time()-start_time)<=3:
-      self.cmd.linear.x = 0.1
-      self.cmd.angular.z = -0.1#.31415926
+      self.cmd.linear.x = 0
+      self.cmd.angular.z = 3.1415926*1.9/180
       self.pub.publish(self.cmd)
       r.sleep()
 

@@ -87,6 +87,7 @@ class multi_keybroad_handle():
      break
 
     self.pub.publish(self.cmd)
+    print self.cmd
 
     #rospy.sleep(0.1)
     #if self.cmd != Twist():
