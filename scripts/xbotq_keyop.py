@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#/usr/bin/env python
 #coding=utf-8
 """
 仿真时候的键盘控制
@@ -24,28 +24,27 @@ class multi_keybroad_handle():
    Reading from the keyboard  and Publishing to Twist!
    ---------------------------
    robot Moving around:
-           i
-      j    k    l
-           ,
+                            i(x speed)
+     h(angular speed)       j(y speed)    k    l(y speed) ;(angular speed)
+                            ,(x speed)
 
    i: forward
    ,: backward
-   j: left turning
-   l: right turning
+   j: walking left
+   l: walking right
+   h: turn left
+   ;: turn right
    k: stop
    """
 
   self.robot_control = {
     'i':(1,0,0,0),
-    'j':(0,0,0,1),
-    'l':(0,0,0,-1),
+    'h':(0,0,0,1)
+    ';':(0,0,0,-1)
+    'j':(0,1,0,0),
+    'l':(0,-1,0,0),
     'k':(0,0,0,0),
     ',':(-1,0,0,0),
-
-    'I':(1,0,0,0),
-    'J':(0,0,0,1),
-    'L':(0,0,0,-1),
-    'K':(0,0,0,0)
     }
 
  def getKey(self):
